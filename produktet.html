@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produktet | huntOS Jagtstol</title>
+  <meta name="description" content="huntOS jagtstolen: 360° rotation, stabilt anlæg, 6,5 kg. Dansk designet og produceret. Fra rygsæk til jagtstol på under ét minut.">
+  <meta property="og:title" content="Produktet | huntOS Jagtstol">
+  <meta property="og:description" content="Dansk designet jagtstol med 360° rotation og stabilt anlæg. 6,5 kg. Fra rygsæk til jagtstol på under ét minut.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Page Hero */
+    .page-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 400px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .page-hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .page-hero__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .page-hero__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--bg-base) 0%, rgba(10, 15, 10, 0.5) 50%, rgba(10, 15, 10, 0.3) 100%);
+    }
+
+    .page-hero__content {
+      position: relative;
+      z-index: 1;
+      padding-bottom: var(--space-3xl);
+    }
+
+    .page-hero__content h1 {
+      margin-bottom: var(--space-md);
+    }
+
+    .page-hero__content .lead {
+      max-width: 580px;
+    }
+
+    /* Carousel */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+    }
+
+    .carousel__track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel__slide {
+      min-width: 100%;
+      position: relative;
+    }
+
+    .carousel__slide img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .carousel__slide p {
+      padding: var(--space-lg) var(--space-xl);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-align: center;
+    }
+
+    .carousel__controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-lg);
+      padding: var(--space-md) var(--space-lg) var(--space-xl);
+    }
+
+    .carousel__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+      font-size: 1.2rem;
+    }
+
+    .carousel__btn:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent);
+    }
+
+    .carousel__dots {
+      display: flex;
+      gap: var(--space-xs);
+    }
+
+    .carousel__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+      padding: 0;
+    }
+
+    .carousel__dot.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.2);
+    }
+
+    /* Specs grid */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    .spec-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .spec-item__label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .spec-item__value {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Component blocks */
+    .component-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    .component-block:nth-child(even) {
+      direction: rtl;
+    }
+
+    .component-block:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .component-block + .component-block {
+      margin-top: var(--space-4xl);
+    }
+
+    .component-block__image {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .component-block__image img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      transition: transform var(--duration-slow) var(--ease-out);
+    }
+
+    .component-block:hover .component-block__image img {
+      transform: scale(1.03);
+    }
+
+    .component-block__text h3 {
+      margin-bottom: var(--space-md);
+    }
+
+    .component-block__text p {
+      line-height: 1.8;
+    }
+
+    /* CTA section */
+    .cta-section {
+      text-align: center;
+    }
+
+    .cta-section__price {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--brass);
+      margin-bottom: var(--space-xs);
+    }
+
+    .cta-section__sub {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .cta-section__buttons {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .trust-badges {
+      display: flex;
+      gap: var(--space-2xl);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .trust-badge svg {
+      width: 24px;
+      height: 24px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-lg) 0;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      list-style: none;
+      transition: color var(--duration-fast);
+      min-height: 48px;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--accent);
+      transition: transform var(--duration-normal) var(--ease-out);
+      flex-shrink: 0;
+      margin-left: var(--space-md);
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-item summary:hover {
+      color: var(--accent-light);
+    }
+
+    .faq-item .faq-answer {
+      padding: 0 0 var(--space-lg);
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 65ch;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .specs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .component-block,
+      .component-block:nth-child(even) {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: var(--space-xl);
+      }
+
+      .page-hero {
+        height: 50vh;
+        min-height: 340px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-text">huntOS</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html">Forside</a></li>
+        <li><a href="produktet.html">Produktet</a></li>
+        <li><a href="om-oscar.html">Om Oskar</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <a href="https://huntos.dk/vare/huntos-stol/" class="nav__cta" target="_blank" rel="noopener">Køb stolen</a>
+      <button class="nav__toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- 1. Page Hero -->
+    <section class="page-hero section-hero">
+      <div class="page-hero__bg">
+        <img src="images/product/chair-front.jpg" alt="huntOS jagtstolen set forfra i naturen" data-parallax="0.15">
+      </div>
+      <div class="container page-hero__content">
+        <h1 class="reveal">huntOS Jagtstolen</h1>
+        <p class="lead reveal" data-delay="0.1">Dansk designet og produceret jagtstol med 360° rotation og stabilt anlæg.</p>
+      </div>
+    </section>
+
+    <!-- 2. Assembly Karrusel -->
+    <section class="section-spacious">
+      <div class="container">
+        <div class="text-center mb-xl">
+          <h2 class="reveal">Fra rygsæk til jagtstol</h2>
+          <p class="lead mx-auto reveal" data-delay="0.1" style="max-width: 520px;">Stil stolen op på under ét minut. 6 simple trin.</p>
+        </div>
+
+        <div class="carousel reveal-scale" data-carousel>
+          <div class="carousel__track" data-carousel-track style="display:flex;transition:transform 0.5s ease">
+            <div class="carousel__slide" data-carousel-slide style="min-width:100%">
+              <img src="images/action/setup-01-backpack.jpg" alt="Trin 1: Tag huntOS jagtstolen af ryggen">
+              <p>Trin 1: Tag stolen af ryggen</p>
+            </div>
+            <div class="carousel__slide" data-carousel-slide style="min-width:100%">
+              <img src="images/action/setup-02-unfold.jpg" alt="Trin 2: Fold benene ud på jagtstolen">
+              <p>Trin 2: Fold benene ud</p>
+            </div>
+            <div class="carousel__slide" data-carousel-slide style="min-width:100%">
+              <img src="images/action/setup-03-legs.jpg" alt="Trin 3: Juster benhøjden til terrænet">
+              <p>Trin 3: Juster benhøjden</p>
+            </div>
+            <div class="carousel__slide" data-carousel-slide style="min-width:100%">
+              <img src="images/action/setup-04-backrest.jpg" alt="Trin 4: Fold ryglænet op på huntOS stolen">
+              <p>Trin 4: Fold ryglænet op</p>
+            </div>
+            <div class="carousel__slide" data-carousel-slide style="min-width:100%">
+              <img src="images/action/setup-05-sit.jpg" alt="Trin 5: Sæt dig ned i jagtstolen">
+              <p>Trin 5: Sæt dig ned</p>
+            </div>
+            <div class="carousel__slide" data-carousel-slide style="min-width:100%">
+              <img src="images/action/setup-06-aim.jpg" alt="Trin 6: Sigt og skyd fra stabil position">
+              <p>Trin 6: Sigt og skyd</p>
+            </div>
+          </div>
+
+          <div class="carousel__controls">
+            <button class="carousel__btn" data-carousel-prev aria-label="Forrige trin">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div class="carousel__dots">
+              <button class="carousel__dot" data-carousel-dot aria-label="Trin 1"></button>
+              <button class="carousel__dot" data-carousel-dot aria-label="Trin 2"></button>
+              <button class="carousel__dot" data-carousel-dot aria-label="Trin 3"></button>
+              <button class="carousel__dot" data-carousel-dot aria-label="Trin 4"></button>
+              <button class="carousel__dot" data-carousel-dot aria-label="Trin 5"></button>
+              <button class="carousel__dot" data-carousel-dot aria-label="Trin 6"></button>
+            </div>
+            <button class="carousel__btn" data-carousel-next aria-label="Næste trin">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Specifikationer -->
+    <section class="section-tight" style="background: var(--bg-elevated);">
+      <div class="container">
+        <h2 class="text-center reveal mb-xl">Specifikationer</h2>
+
+        <div class="specs-grid" data-stagger>
+          <div class="spec-item">
+            <span class="spec-item__label">Vægt</span>
+            <span class="spec-item__value">6,5 kg</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Siddehøjde</span>
+            <span class="spec-item__value">45-55 cm</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Rotation</span>
+            <span class="spec-item__value">360° kontinuerlig</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Samletid</span>
+            <span class="spec-item__value">Under 1 minut</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Transport</span>
+            <span class="spec-item__value">Integreret rygsæksystem</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Materiale</span>
+            <span class="spec-item__value">Kvalitetsplast + aluminium</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Max belastning</span>
+            <span class="spec-item__value">130 kg</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Oprindelse</span>
+            <span class="spec-item__value">Dansk design og produktion</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Nøglekomponenter -->
+    <section class="section-normal">
+      <div class="container">
+        <h2 class="text-center reveal mb-2xl">Bygget til formålet</h2>
+
+        <!-- Teleskopstang -->
+        <div class="component-block">
+          <div class="component-block__image reveal-left">
+            <img src="images/detail/teleskopstang.jpg" alt="Teleskopstang med justerbar højde og vinkel">
+          </div>
+          <div class="component-block__text reveal-right">
+            <h3>Teleskopstang</h3>
+            <p>Justerbar højde og vinkel tilpasser sig enhver skyttestilling. Lydløs betjening med en hånd, så du ikke forstyrrer vildtet.</p>
+          </div>
+        </div>
+
+        <!-- Sikkerhedsklips -->
+        <div class="component-block">
+          <div class="component-block__image reveal-right">
+            <img src="images/detail/klips.jpg" alt="Sikkerhedsklips der holder anlægsbøjlen på plads">
+          </div>
+          <div class="component-block__text reveal-left">
+            <h3>Sikkerhedsklips</h3>
+            <p>Holder anlægsbøjlen sikkert på plads under transport og gang. Klik ind, klik ud. Enkelt og driftsikkert.</p>
+          </div>
+        </div>
+
+        <!-- Anlægsbøjle -->
+        <div class="component-block">
+          <div class="component-block__image reveal-left">
+            <img src="images/detail/anlaegsbojle.jpg" alt="Anlægsbøjle med stabilt anlæg og 360 graders rotation">
+          </div>
+          <div class="component-block__text reveal-right">
+            <h3>Anlægsbøjle</h3>
+            <p>Fast, stabilt anlæg der følger med stolens 360° rotation. Giver et sikkert skud fra enhver vinkel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CTA -->
+    <section class="section-spacious">
+      <div class="container cta-section">
+        <div class="reveal">
+          <div class="cta-section__price">3.500 kr.</div>
+          <p class="cta-section__sub">Inkl. moms. Fragt fra 110 kr.</p>
+        </div>
+        <div class="cta-section__buttons reveal" data-delay="0.15">
+          <a href="https://huntos.dk/vare/huntos-stol/" class="btn btn--primary btn--large" target="_blank" rel="noopener">Køb stolen</a>
+          <a href="kontakt.html" class="btn btn--secondary btn--large">Kontakt Oskar</a>
+        </div>
+        <div class="trust-badges reveal" data-delay="0.25">
+          <div class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Dansk produceret</span>
+          </div>
+          <div class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            <span>Patentanmeldt design</span>
+          </div>
+          <div class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Sendes fra Aabenraa</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FAQ -->
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="text-center reveal mb-xl">Ofte stillede spørgsmål</h2>
+
+        <div class="faq-list reveal" data-delay="0.1">
+          <details class="faq-item">
+            <summary>Hvor meget vejer stolen?</summary>
+            <div class="faq-answer">huntOS jagtstolen vejer 6,5 kg og har et integreret rygsæksystem, så den er nem at transportere selv på lange ture i terrænet.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Hvor lang tid tager det at stille stolen op?</summary>
+            <div class="faq-answer">Under ét minut. Stolen foldes ud i 6 simple trin, og du er klar til at jage uden værktøj eller kompliceret samling.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Kan stolen bruges på ujævnt terræn?</summary>
+            <div class="faq-answer">Ja. Benene kan justeres individuelt i højden, så stolen står stabilt på skrå og ujævn grund. Siddehøjden går fra 45 til 55 cm.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Hvad er anlægsbøjlen?</summary>
+            <div class="faq-answer">Anlægsbøjlen er et fast, stabilt anlæg monteret på stolen. Den følger med i stolens 360° rotation, så du altid har et sikkert og præcist anlæg uanset skudvinkel.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Hvor meget kan stolen bære?</summary>
+            <div class="faq-answer">Stolen er testet til en maksimal belastning på 130 kg. Konstruktionen i formstøbt kvalitetsplast og aluminium sikrer holdbarhed sæson efter sæson.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Hvor produceres stolen?</summary>
+            <div class="faq-answer">huntOS jagtstolen er dansk designet og produceret. Oskar Schulz står bag hele udviklingen fra idé til færdigt produkt. Designet er patentanmeldt.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Hvad koster fragt?</summary>
+            <div class="faq-answer">Fragt starter fra 110 kr. Stolen sendes fra Aabenraa, og du kan forvente levering inden for få hverdage.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sticky Mobile CTA -->
+  <div class="sticky-cta">
+    <div class="sticky-cta__inner">
+      <div class="sticky-cta__price">3.500 kr. <span>Inkl. moms</span></div>
+      <a href="https://huntos.dk/vare/huntos-stol/" class="btn btn--primary" target="_blank" rel="noopener">Køb stolen</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <div class="footer__brand-name">huntOS</div>
+          <p>huntOS ApS<br>Langhus 19<br>6200 Aabenraa<br>CVR: 44566133</p>
+        </div>
+        <div class="footer__col">
+          <h4>Sider</h4>
+          <ul class="footer__links">
+            <li><a href="index.html">Forside</a></li>
+            <li><a href="produktet.html">Produktet</a></li>
+            <li><a href="om-oscar.html">Om Oskar</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Kontakt</h4>
+          <ul class="footer__links">
+            <li><a href="https://huntos.dk/vare/huntos-stol/" target="_blank" rel="noopener">Køb stolen</a></li>
+            <li><a href="mailto:oskar@huntos.dk">oskar@huntos.dk</a></li>
+            <li><a href="tel:+4592921207">+45 92 92 12 07</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 huntOS ApS. Alle rettigheder forbeholdes.</span>
+        <a href="mailto:oskar@huntos.dk">oskar@huntos.dk</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+
+</body>
+</html>
